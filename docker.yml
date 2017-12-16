@@ -17,14 +17,14 @@
   
     - name: Login to docker
       docker_login:
-        username: franklinsijo
-        password: **********
-        email: franklinsijo@gmail.com
+        username: shineeshpk
+        password: spk63208
+        email: shineeshpk@gmail.com
 
     - name: Launch docker container
       docker_container:
         name: bottlecontainer
-        image: franklinsijo/ansibleimage:latest
+        image: shineeshpk/ansibleimage:latest
         ports:
           - "4040:8080"
 
