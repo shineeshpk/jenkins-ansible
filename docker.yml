@@ -1,0 +1,33 @@
+- hosts: all
+  tasks:
+    - name: Add Docker Signing Key
+      apt_key: 
+        url: "https://download.docker.com/linux/ubuntu/gpg"
+        state: present
+
+    - name: Add Docker Apt Repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+        state: present
+
+    - name: Install Docker Community Edition
+      apt: pkg=docker-ce state=installed update_cache=true
+      notify:
+       - start docker
+  
+    - name: Login to docker
+      docker_login:
+        username: franklinsijo
+        password: **********
+        email: franklinsijo@gmail.com
+
+    - name: Launch docker container
+      docker_container:
+        name: bottlecontainer
+        image: franklinsijo/ansibleimage:latest
+        ports:
+          - "4040:8080"
+
+  handlers:
+    - name: start docker
+      service: name=docker state=started
