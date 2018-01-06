@@ -26,7 +26,7 @@
         name: bottlecontainer
         image: shineeshpk/ansibleimage:latest
         ports:
-          - "4041:8080"
+          - "4045:8080"
 
   handlers:
     - name: start docker
